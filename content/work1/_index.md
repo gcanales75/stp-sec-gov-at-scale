@@ -1,7 +1,7 @@
 +++
 title = "Fargate"
 date = 2021-02-17T17:04:42-06:00
-weight = 1
+weight = 2
 chapter = false
 pre = "<b>1. </b>"
 +++
