@@ -10,7 +10,7 @@ pre = "<b>0. </b>"
 
 1. To access to lab environment you need to enter the following URL <a href="https://dashboard.eventengine.run/login" target="_blank">Event Engine Dashboard</a>
 
-1. Enter your event hash and click on **Accept Terms & Login**
+1. Enter the event hash provided by the instructor and click on **Accept Terms & Login**
 
 	<img src="images/skitch.5.png" alt="drawing" width="600"/>
 
