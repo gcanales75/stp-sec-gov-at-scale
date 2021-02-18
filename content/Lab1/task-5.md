@@ -12,7 +12,7 @@ A service in ECS using Fargate serves a similar purpose to an Auto Scaling group
 
 1. Mark the check box next to the Task definition you created in *Task 3*, click on **Actions**, and then click on **Create Service**.
  
-	<img src="images/Picture48.png" alt="drawing" width="500"/>
+	<img src="../images/Picture48.png" alt="drawing" width="600"/>
 
 1. For Launch Type, select `Fargate`.
 
@@ -24,13 +24,13 @@ A service in ECS using Fargate serves a similar purpose to an Auto Scaling group
 
 1. Choose the correct VPC (10.100.0.0/16, VPC-Lab1). Under Subnets, select `private-subnet-1` and `private-subnet-2`.
 
-	<img src="images/Picture49.png" alt="drawing" width="400"/>
+	<img src="../images/Picture49.png" alt="drawing" width="400"/>
 
 1. For Security Groups, click **Edit**.
  
 1. Choose **Select existing security group** and select the **Container-SG** security group. 
 
-	<img src="images/Picture50.png" alt="drawing" width="400"/>
+	<img src="../images/Picture50.png" alt="drawing" width="600"/>
 
 1. Click **Save**.
 
@@ -40,11 +40,11 @@ A service in ECS using Fargate serves a similar purpose to an Auto Scaling group
 
 1. Select **Fargate-LB** in **Load Balancer Name**
  
-1. Under **Container to load balance**, click on <img src="images/Picture51.png" alt="drawing" width="100"/>
+1. Under **Container to load balance**, click on **Add to load balancer**
  
 1. For **Target group name**, choose `Lab1-TG`.
 
-	<img src="images/Picture52.png" alt="drawing" width="300"/>
+	<img src="../images/Picture52.png" alt="drawing" width="500"/>
 
 1. Click **Next step**
 
@@ -80,6 +80,8 @@ A service in ECS using Fargate serves a similar purpose to an Auto Scaling group
 
 1. Paste on a new browser window the "DNS name" you copied at the end of Task 4, you will see the website page. 
 
-	<img src="images/Picture53.png" alt="drawing" width="500"/>
+	<img src="../images/Picture53.png" alt="drawing" width="600"/>
 
 1. You could refresh the browser and see the **Task ID** updated, this means the the Application Load Balancer is distribuiting traffic across your **Fargate** tasks.
+
+**LAB END**

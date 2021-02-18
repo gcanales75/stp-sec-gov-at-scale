@@ -11,21 +11,21 @@ Sending incoming traffic through a load balancer is often a key piece of making 
  
 1. In the left navigation pane, choose **Load Balancers**.
 
-	<img src="images/Picture16.png" alt="drawing" width="600"/>
+	<img src="../images/Picture16.png" alt="drawing" width="800"/>
  
 1. Click on **Create Load Balancer**.
 
-	<img src="images/Picture17.png" alt="drawing" width="300"/>
+	<img src="../images/Picture17.png" alt="drawing" width="400"/>
  
 1. Under **Application Load Balancer**, click on **Create**.
 
-	<img src="images/Picture18.png" alt="drawing" width="600"/>
+	<img src="../images/Picture18.png" alt="drawing" width="700"/>
  
 1. Under the **Basic Configuration** section, for **Name**, type `Fargate-LB`.
  
 1. Under **Availability Zones**, choose the appropriate VPC (`VPC-Lab1`) and mark both Availabilty Zones checkboxes. Select the *public* subnets, `public-subnet-1` and `public-subnet-2`.
 
-	<img src="images/Picture45.png" alt="drawing" width="500"/>
+	<img src="../images/Picture45.png" alt="drawing" width="500"/>
  
 1. Click on **Next: Configure Security Settings**.
 
@@ -33,7 +33,7 @@ Sending incoming traffic through a load balancer is often a key piece of making 
 
 1. In **Step 3: Configure Security Groups**, choose **Select an existing security group** and *only* select **LoadBalancer-SG**. 
 
-	<img src="images/Picture46.png" alt="drawing" width="700"/>
+	<img src="../images/Picture46.png" alt="drawing" width="700"/>
 
 1. Click on **Next: Configure Routing**.
  
@@ -51,4 +51,4 @@ Sending incoming traffic through a load balancer is often a key piece of making 
 
 1. You will find the Load Balancer DNS name it in the below panel. Copy and paste it on a note pad, you will need it to access the web site that will deployed in Task 5.
 
-	<img src="images/Picture47.png" alt="drawing" width="700"/>
+	<img src="../images/Picture47.png" alt="drawing" width="800"/>

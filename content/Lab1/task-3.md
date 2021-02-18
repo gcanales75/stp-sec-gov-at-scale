@@ -13,11 +13,11 @@ The console makes it easier to create this definition by exposing all the parame
 
 1. In the left navigation pane, choose **Task Definitions**, then click on **Create new task definition**.
  
- 	<img src="images/Picture8.png" alt="drawing" width="500"/>
+ 	<img src="../images/Picture8.png" alt="drawing" width="500"/>
  
 1. Under **Select launch type compatibility**, choose **FARGATE**, click on **Next step**.
  
-	<img src="images/Picture9.png" alt="drawing" width="650"/>
+	<img src="../images/Picture9.png" alt="drawing" width="700"/>
  
 1. For Task Definition Name, enter `Fargate-td-[your-name]`. You could use your name or some alias. Please remove the brackets "[ ]".
 
@@ -39,4 +39,4 @@ The console makes it easier to create this definition by exposing all the parame
 
 1. Scroll to the button of the page and click on **Create**
 
-	<img src="images/Picture14.png" alt="drawing" width="700"/>
+	<img src="../images/Picture14.png" alt="drawing" width="700"/>
