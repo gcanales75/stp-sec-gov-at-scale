@@ -5,6 +5,7 @@ frontend:
     build:
       commands:
       - hugo
+      - ls -la
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: public
