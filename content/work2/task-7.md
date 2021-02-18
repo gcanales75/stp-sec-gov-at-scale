@@ -16,7 +16,9 @@ A Kubernetes namespace provides the scope for Pods, Services, and Deployments in
 
 1. Verify your kubectl client is working on your dedicated environment, execute the following command:
 
-	`kubectl config current-context`
+	```
+	kubectl config current-context
+	```
 
 	You must see this output:
 
