@@ -6,6 +6,8 @@ frontend:
       commands:
       - hugo
       - ls -la public
+      - yum install tree -y
+      - tree
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: public
