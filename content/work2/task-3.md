@@ -34,7 +34,7 @@ weight = 3
 	docker run -P -d -p 8080:80 stp/website
 	```
 
-	You can preview the a running application in Cloud9, let's look at it:
+	You can preview a running application in Cloud9, let's look at it:
 
 1. Go to Preview -> Preview Running Application
 

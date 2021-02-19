@@ -4,7 +4,7 @@ chapter = false
 weight = 5 
 +++
 
-1. First, we need to setup some additional enviroment variables:
+1. In this task we will authenticate your Cloud9 env session with the EKS cluster, but first we need to setup some additional enviroment variables:
 
 	```
 	echo "export AWS_REGION=us-east-2" | tee -a ~/.bash_profile
@@ -27,7 +27,7 @@ weight = 5
 	```
 
 	If you see this output: `chown: cannot access ‘/home/ec2-user/.kube/’: No such file or directory`
-	Please wait two more minutes to finish the deployment.
+	Please wait a couple of more minutes to finish the cluster deployment. If you receive no output from the above command please proceed with the next task.
 
 1. To create the Kubernetes `config` file, you will need the cluster’s certificate authority data, the cluster URL and the cluster name, we will again use environment variables. Run the below commands to add them:
 
@@ -37,7 +37,7 @@ weight = 5
 	export CLUSTER_NAME=`aws eks describe-cluster --name eks-lab-cluster --query 'cluster.name' --output text`
 	```
 
-	With those variables we will create a EKS Cluster ```config``` file, take a look at the file named ```config-source``` which is in the lab's working directory. We will use this file as a template.
+	With those env variables we will create a EKS Cluster ```config``` file, take a look at the file named ```config-source``` which is in the lab's working directory. We will use this file as a template.
 
 1. Run this command to create the ```config``` file and make the variables substitution with the actual cluster information:
 
@@ -45,7 +45,7 @@ weight = 5
 	envsubst < "config-source" > "config"
 	```
 
-1. Copy the just created kubeconfig file to your kubernetes environment
+1. Run the below command to copy the just created kubeconfig file to your kubernetes environment
 
 	```
 	cp ~/environment/stpEksLabRepo/config /home/ec2-user/.kube/config

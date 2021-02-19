@@ -27,7 +27,7 @@ Now we will create a container registry using the ECR service to store our Docke
 	echo $ECR_REPO_URI
 	```
 
-1. Before we could push our Docker image to our ECR repo we need to authenticate. Run the below commands:
+1. Before we could push our Docker image to our ECR repo we need to authenticate. Run the below command:
 
 	```sh
 	$(aws ecr get-login --registry-ids $ACCOUNT_NUMBER --no-include-email --region us-east-2)
