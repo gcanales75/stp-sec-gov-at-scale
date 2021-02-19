@@ -27,7 +27,7 @@ weight = 5
 	```
 
 	If you see this output: `chown: cannot access ‘/home/ec2-user/.kube/’: No such file or directory`
-	Please wait a couple of more minutes to finish the cluster deployment. If you receive no output from the above command please proceed with the next task.
+	Please wait a couple of more minutes to finish the cluster deployment. Once you receive no output from the above command please proceed with the next task.
 
 1. To create the Kubernetes `config` file, you will need the cluster’s certificate authority data, the cluster URL and the cluster name, we will again use environment variables. Run the below commands to add them:
 
