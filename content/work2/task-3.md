@@ -4,11 +4,9 @@ chapter = false
 weight = 3
 +++
 
-1. Open a new terminal window.
+1. Now we will create the Docker image we will use in our project. Open a new terminal window.
 
 	<img src="../readmeFiles/skitch.14.png" alt="drawing" width="700"/>
-
-	Now we will create the Docker image we will use in our project
 
 1. Change directory (cd) to the Docker project working directory
 
