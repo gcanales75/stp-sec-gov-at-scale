@@ -32,7 +32,7 @@ The first steps in this lab will require you to prepare your Cloud9 workspace wi
 
 1. Click on **Save**
 
-1. Most of the lab's activity will be performed using the Cloud9 service. Let’s open our Cloud9 workspace. Go to the Cloud9 service. Service *search box* > Cloud9
+1. Most of the lab's activity will be performed using the **Cloud9** service. Let’s open our Cloud9 workspace. Go to the Cloud9 service. Service *search box* > Cloud9
 
 1. Open your Cloud9 IDE
 
@@ -50,7 +50,7 @@ The first steps in this lab will require you to prepare your Cloud9 workspace wi
 
 	1. Close “Preferences” window
 
-	<img src="../readmeFiles/skitch.8.png" alt="drawing" width="900"/>
+	<img src="../readmeFiles/disable-creds.png" alt="drawing" width="1000"/>
 
 1. Close the bottom panel
 
@@ -58,23 +58,13 @@ The first steps in this lab will require you to prepare your Cloud9 workspace wi
 
 1. Close the *Welcome* and *AWS Toolkit - Quick Start* tabs
 
-	<img src="../readmeFiles/skitch.10.png" alt="drawing" width="800"/>
+	<img src="../readmeFiles/close-windows.png" alt="drawing" width="700"/>
 
 1. Open a new terminal window
 
 	<img src="../readmeFiles/skitch.11.png" alt="drawing" width="500"/>
 
-	You will execute a shell script that will repare your Cloud9 IDE to perform you lab tasks. You could look at the script commands opening the file from the left panel, "ekssetup.sh".
-
-1. Doble click ```ekssetup.sh``` file:
-
-	<img src="../readmeFiles/skitch.12.png" alt="drawing" width="200"/>
-
-1. Return to your console window. 
-
-	<img src="../readmeFiles/skitch_13.png" alt="drawing" width="700"/>
-
-1. Run the below commands to execute the script:
+1. You will execute a shell script that will prepare your Cloud9 environment to perform you lab tasks. Run the below commands to execute the script:
 
 ```sh
 cd stpEksLabRepo/

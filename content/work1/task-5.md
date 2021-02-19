@@ -74,7 +74,7 @@ A service in ECS using Fargate serves a similar purpose to an Auto Scaling group
 
 1. Click on **View Service**
 
-1. Click on the **Tasks** tab and you will see that another task is in *Provisioning* status.
+1. Click on the **Tasks** tab and you will see that another task is in *Provisioning* status (it could take a few seconds).
  
 1. Now click on the **Details** tab, click on the Target Group `Lab1-TB` link to be redirected to the **Taget Group** configuration page. click on the **Targets** tab. You will see the IP address registered for the *Task* you just deployed spread across two different availability zones.
 
@@ -82,6 +82,6 @@ A service in ECS using Fargate serves a similar purpose to an Auto Scaling group
 
 	<img src="../images/Picture53.png" alt="drawing" width="600"/>
 
-1. You could refresh the browser and see the **Task ID** updated, this means the the Application Load Balancer is distribuiting traffic across your **Fargate** tasks.
+1. You could refresh the browser a few times and see how the **Task ID** gets updated, this means the the Application Load Balancer is distribuiting traffic across your **Fargate** tasks.
 
 **LAB END**

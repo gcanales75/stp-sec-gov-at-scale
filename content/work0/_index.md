@@ -14,7 +14,7 @@ pre = "<b>0. </b>"
 
 	<img src="images/skitch.5.png" alt="drawing" width="600"/>
 
-1. In order to identify the account you will be using is necessary to change the default account ID. Please click on **Set Team Name**:
+1. In order to identify the AWS account you will be using, change the Team's name. Please click on **Set Team Name**:
 
 	<img src="images/skitch.4.png" alt="drawing" width="600"/>
 

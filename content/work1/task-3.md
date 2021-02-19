@@ -35,7 +35,7 @@ The console makes it easier to create this definition by exposing all the parame
 
 1. Click on **Add**.
 
-	You will see a warninig "*Failed to retrieve App Mesh information*", you can ignore the warning and proceed with the next step.
+	You will see a warning "*Failed to retrieve App Mesh information*", you can ignore the warning and proceed with the next step.
 
 1. Scroll to the button of the page and click on **Create**
 

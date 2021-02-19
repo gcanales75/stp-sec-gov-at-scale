@@ -49,6 +49,6 @@ Sending incoming traffic through a load balancer is often a key piece of making 
 
 1. Click on **Close**.
 
-1. You will find the Load Balancer DNS name it in the below panel. Copy and paste it on a note pad, you will need it to access the web site that will deployed in Task 5.
+1. You will find the Load Balancer DNS name it in the below panel. Copy and paste it on a note pad, you will need it to access the web site that will be deployed in Task 5.
 
 	<img src="../images/Picture47.png" alt="drawing" width="800"/>

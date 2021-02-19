@@ -16,7 +16,7 @@ weight = 3
 	cd stpEksLabRepo/website/
 	```
 
-1. This folder contains the website and Dockerfile sorce code we will use to deploy a containarized application in our EKS cluster, please review its content including the Dockerfile including in this folder
+1. This folder contains the website and Dockerfile source code we will use to deploy a containarized application in our EKS cluster.
 
 	```
 	cat Dockerfile
