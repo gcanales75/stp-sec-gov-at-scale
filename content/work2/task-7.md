@@ -6,7 +6,7 @@ weight = 7
 
 A Kubernetes namespace provides the scope for Pods, Services, and Deployments in the cluster. We will create a new context for the kubectl client to work in a dedicated namespace.
 
-1. We will execute file ```labNamespace.sh``` which is also in the lab's working directory.
+1. We will execute file ```labNamespace.sh``` which is also in the working directory.
 
 	```sh
 	cd ~/environment/stpEksLabRepo/

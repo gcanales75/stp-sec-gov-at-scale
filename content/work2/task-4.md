@@ -6,7 +6,7 @@ weight = 4
 
 Now we will create a container registry using the ECR service to store our Docker image, and then we will push the image to that repo.
 
-1. Create a ECR repository named "containers-lab"
+1. Create an ECR repository named "containers-lab"
 
 	```
 	aws ecr create-repository --repository-name containers-lab --region us-east-2

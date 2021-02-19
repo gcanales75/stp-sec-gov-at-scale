@@ -14,9 +14,9 @@ The deployment, services and ingress configuration files are in the ```eks-lab-a
 
 1. Open ```deployment.yaml``` file from the left panel, you will notice the Deployment's ```spec.template.spec.image``` field will be set from the ```$ECR_REPO_URI``` environment variable we set before. This will reference the docker image we created before.
 
-	We will use ```envsubst```, which is preinstalled in Cloud9, to pass the container registry URI environment variable to the ```deployment.yaml``` file
+	We will use ```envsubst```, which is preinstalled in Cloud9 to pass the container registry URI environment variable to the ```deployment.yaml``` file
 
-1. Change directory to the lab's application path
+1. Change directory to the application's path
 
 	```
 	cd ~/environment/stpEksLabRepo/eks-lab-app/

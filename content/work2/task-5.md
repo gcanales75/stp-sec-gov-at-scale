@@ -17,7 +17,7 @@ weight = 5
 	aws eks describe-cluster --name eks-lab-cluster --query 'cluster.status' --output text
 	```
 
-	If the Cluster is in ```ACTIVE``` state please proceed with the following steps, otherwise wait a few more minutes.
+	If the Cluster is in ```ACTIVE``` state, please proceed with the following steps, otherwise wait a few more minutes.
 
 1. Once the Cluster is in ```ACTIVE``` state, we need to update kubeconfig file for EKS cluster authentication, please run the below commands to set proper  permissions to edit the file:
 
