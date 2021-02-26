@@ -1,50 +1,81 @@
 +++ 
-title = "Task 1: Create an ECS cluster" 
+title = "Task 1: Querying Data with Amazon Redshift Spectrum" 
 chapter = false 
 weight = 1 
 +++
 
-An ECS cluster is a logical construct for running groups of containers known as tasks. Clusters can also be used to segregate different environments or teams from each other. In the traditional EC2 launch mode, there are specific EC2 instances associated with and managed by each ECS cluster, but this is transparent to the customer with Fargate.
+1. From the console, navigate to the **Amazon Redshift** service. Service *search box* > Redshift
 
-Make sure that your AWS console session is using `Ohio` region.
+	<img src="../images/service-redshift.png" alt="drawing" width="600"/>
 
+1. We need to create a new database connection, click on the **EDITOR** icon, then click on **Query editor**
 
+	<img src="../images/click-on-editor.png" alt="drawing" width="100"/>
 
-<img src="../images/Picture2.png" alt="drawing" width="400"/>
- 
-1. Open the ECS console. Service *search box* > ECS
- 
-	![image1](../images/service-ecs.png?width=600px)
+1. In this lab, we will use the previous Redshift query editor version, so please click on **old query editor** from the blue banner at the top of the page.
 
-1. From the left pane choose **Clusters**, then click on **Create Cluster**.
- 
-	<img src="../images/Picture4.png" alt="drawing" width="500"/>
-
-1. Choose **Networking only**, click on **Next step**.
- 
-	<img src="../images/Picture5.png" alt="drawing" width="500"/>
- 
-1. For Cluster name, enter `Fargate`. For the purpose of this Lab, there is no need to create a new VPC. 
- 
-	<img src="../images/Picture6.png" alt="drawing" width="500"/>
- 	
-1. You will get the *ECS Cluster Fargate successfully created* message
-
-	<img src="../images/ok-cluster.png" alt="drawing" width="700"/>
-
-	Note: In case you get this error message...
-		
-	<img src="../images/error-fargate.png" alt="drawing" width="700"/>
+	<img src="../images/old-query-editor.png" alt="drawing" width="800"/>
 	
-	... click on **Back** and in the next page click **Cancel**
-	
-	<img src="../images/click-cancel.png" alt="drawing" width="200"/>
-	
-	Repeat the instructions to create the Fargate Cluster starting from *step 2*.
+1. In the **Connect to database** dialog box, update fields with this parameters:
 
-	
-1. Click on **View Cluster**
+	| Key | Value  |
+	|---|---|
+	| Database name  | psobigdata  |
+	|  Database user | awsuser  |
+	|  Database password | PsoBigData01  |
 
-	Your cluster should look similar to:
- 
- 	<img src="../images/Picture54.png" alt="drawing" width="600"/>
+1. Click **Connect to database**
+
+	<img src="../images/redshift-connect-to-database.png" alt="drawing" width="500"/>
+
+1. You will run the below query, but before you run it you need to update the IAM role ARN with the actual AWS account number (ACCOUNT_NUMBER), you will find it in the console upper right corner, it's a 12 digits number. Remove hyphens '-'.
+
+	<img src="../images/aws-account-number.png" alt="drawing" width="500"/>
+
+	```
+	create external schema tickithistory
+	from data catalog
+	database 'teamawesome-tickit-history'
+	region 'us-west-2'
+	iam_role 'arn:aws:iam::ACCOUNT_NUMBER:role/RedshiftIAMRole1'
+	create external database if not exists;
+	```
+
+1. Paste the the updated script in the Amazon Redshift query editor text box and run the query.
+
+	<img src="../images/redshift-run-query.png" alt="drawing" width="700"/>
+
+
+1. To make sure the external schema has been created, run the following query in the same Query window:
+
+	```
+	select * from svv_external_schemas
+	```
+
+	You must see a similar output in the below **Rows returned** panel
+
+	<img src="../images/redshift-new-schema.png" alt="drawing" width="600"/>
+
+1. To make sure that your external tables are available for querying, run the following query:
+
+	```
+	select * from svv_external_tables
+	```
+
+	Below **Rows returned** you must see a list of tables
+	
+1. Now that you have confirmed that your external tables are accessible, you can run queries from Redshift to Athena databases. 
+
+	*Sample query question*: Using the following query, we will find what were the Top 5 ticket sellers for events in San Diego in 2008?
+
+	```
+	select sellerid, username, city, firstname ||' '|| lastname as fullname, sum(qtysold) as qtysold
+	from tickithistory.sales, tickithistory.date, tickithistory.users
+	where sales.sellerid = users.userid
+	and sales.dateid = date.dateid
+	and year = 2008
+	and city = 'San Diego'
+	group by sellerid, username, city, firstname ||' '|| lastname
+	order by 5 desc
+	limit 5;
+	```

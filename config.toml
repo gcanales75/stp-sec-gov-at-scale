@@ -3,7 +3,7 @@ CanonifyURLs=true
 languageCode = "en-US"
 defaultContentLanguage = "en"
 
-title = "STP Containers on AWS - Labs"
+title = "Datawarehouse on AWS"
 theme = "learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
@@ -16,7 +16,7 @@ pygmentsStyle = "monokai"
 googleAnalytics = "UA-55517703-6"
 
 [params]
-  description = "Building and deploying a containerized application with AWS ECS & EKS"
+  description = ""
   author = "Gilberto Canales"
   disableBreadcrumb = false
   disableNextPrev = false
@@ -46,7 +46,7 @@ home = [ "HTML", "RSS", "JSON"]
 
 [Languages]
 [Languages.en]
-title = "Welcome to STP Containers on AWS - Labs"
+title = "Welcome to Datawarehouse on AWS - Labs"
 weight = 1
 languageName = "English"
 

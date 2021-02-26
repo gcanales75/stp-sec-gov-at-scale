@@ -1,75 +1,98 @@
 +++ 
-title = "Task 1: Prepare your Cloud9 environment" 
+title = "Task 1: Convert your Oracle schema to Redshift" 
 chapter = false 
 weight = 1 
 +++
 
-The first steps in this lab will require you to prepare your Cloud9 workspace with the proper IAM permissions attaching an instance role to it.
+1. To do this lab, you will need the Private IP of an Oracle DW deployed in this lab environment, that you will use as the source database to perform a migration to Amazon Redshift, and the public IP of a Windows host which has preinstalled the Schema Convertion Tool (SCT). To obtain these IPs, navigate to the CloudFormation Service (Service *search box* -> CloudFormation)
 
-1. Go to the EC2 console. Service *search box* > EC2
+1. Click on the CloudFormation stack listed
 
-	<img src="../readmeFiles/service-ec2-1.png" alt="drawing" width="600"/>
-	
-1. In the EC2 dashboard, click on “Instances”:
+	<img src="../images/cf-1.png" alt="drawing" width="600"/>
 
-	<img src="../readmeFiles/clickoninstances.png" alt="drawing" width="700"/>
+1. Click on the **Outputs** panel
 
-1. Mark the checkbox next to the Cloud9 workspace instance:
+	<img src="../images/cf-2.png" alt="drawing" width="600"/>
 
-	<img src="../readmeFiles/click-on-cloud9-instance.png" alt="drawing" width="400"/>
+1. Copy and paste the *Oracle DW private IP*, *Windows host public IP* and the *Amazon Redshift endpoint* in a notepad on your computer, you will use them later in this lab and in Lab #3.
 
-1. Attach an IAM instance role the Cloud9 instance. Click  on **Actions** > **Security** > **Modify IAM Role**
+1. The *Schema Conversion Tool (SCT)* is preinstalled in the Windows host. Use the below credentials to log in to the instance using any RDP client installed in your computer
 
-	<img src="../readmeFiles/change-iam-role.png" alt="drawing" width="350"/>
+	| Key | Value  |
+	|---|---|
+	| Host IP  | [Windows host public IP]  |
+	|  User | Administrator  |
+	|  Password | PsoBda2020$Win  |
 
-1. Select the IAM Role
+1. Once logged in, click **Yes**, to allow the windows intance to be network discovered
 
-	1. Click on the small triangule to display the options
+	<img src="../images/win-network.png" alt="drawing" width="300"/>
 
-	1. Click on **Cloud9InstanceProfile**
+1. Open the AWS Schema Conversion Tool (SCT), it will take ~1 minute to launch
 
-	<img src="../readmeFiles/set-cloud9-instance-profile.png" alt="drawing" width="600"/>
+	<img src="../images/open-sct.png" alt="drawing" width="500"/>
 
-1. Click on **Save**
+1. If you see a prompt window asking for a SCT update, select **Not now**
 
-1. Most of the lab's activity will be performed using the **Cloud9** service. Let’s open our Cloud9 workspace. Go to the Cloud9 service. Service *search box* > Cloud9
+1. Once the *Schema Conversion Tool (SCT)* has launched, in the Menu panel, click on File > New project
 
-1. Open your Cloud9 IDE
+	<img src="../images/open-new-proyect.png" alt="drawing" width="200"/>
 
-	<img src="../readmeFiles/skitch.7.png" alt="drawing" width="500"/>
+1. Update the New project information with the below values
 
-1. You need to disable the temporary Cloud9 credentials to use the IAM instance profile permissions (follow the steps described in below image).
+	| Key | Value  |
+	|---|---|
+	| Project Name  | Convert Oracle DwH to Redshift  |
+	|  DB category | Data warehouse (OLAP)  |
+	|  Source engine | Oracle DW |
+	|  Target engine | Amazon Redshift  |
 
-	1. Click on **Preferences**
+1. Click **OK**
 
-	1. Click on **AWS Settings**
+1. Once in your new project panel, you need to disable **AWS Glue** as the target for stored procedures conversion, click on Settings > Project Settings > Conversion settings > Use AWS Glue (UNCHECK)
 
-	1. Disable **AWS managed temporary credentials**
+	<img src="../images/uncheck-glue.png" alt="drawing" width="700"/>
 
-		**(MAKE SURE THE SWITCH HAS TURNED TO RED)**
+1. Click **OK**
 
-	1. Close “Preferences” window
+1. Click on **Connect to Oracle DW**
 
-	<img src="../readmeFiles/disable-creds.png" alt="drawing" width="1000"/>
+1. You will need the Oracle DW private IPv4 recorded in this lab's step 6. Update the connection information with the below values:
 
-1. Close the bottom panel
+	| Key | Value  |
+	|---|---|
+	| Server name  | [Oracle DW private IP]  |
+	|  Server port | 1521  |
+	|  Oracle SID | xe |
+	|  User name | TICKITDWH  |
+	|  Password | tickit#2020$dw  |
 
-	<img src="../readmeFiles/skitch.9.png" alt="drawing" width="800"/>
+1. Click **OK**
 
-1. Close the *Welcome* and *AWS Toolkit - Quick Start* tabs
+1. An SSL security warning will show in the screen, since this a lab environment we can proceed without configuring a secure SSL connection.
 
-	<img src="../readmeFiles/close-windows.png" alt="drawing" width="700"/>
+	<img src="../images/oracle-ssl-warning.png" alt="drawing" width="500"/>
 
-1. Open a new terminal window
+1. Click on **Connect to Amazon Redshift**. Update the connection information with the below values:
 
-	<img src="../readmeFiles/skitch.11.png" alt="drawing" width="500"/>
+	| Key | Value  |
+	|---|---|
+	| Server name  | [Amazon Redshift endpoint]  |
+	|  Server port | 5439 |
+	|  Database | psobigdata |
+	|  User name | awsuser |
+	|  Password | PsoBigData01 |
 
-1. You will execute a shell script that will prepare your Cloud9 environment to perform you lab tasks. Run the below commands to execute the script:
+1. Click **OK**
 
-```sh
-cd stpEksLabRepo/
-chmod +x ./ekssetup.sh 
-./ekssetup.sh
-```
+1. From the **Oracle DW** pane on the left-hand side, DE-SELECT all of the items in the list
 
-Wait a minute to complete the script execution
+1. In the same pane, click to select the **TICKITDWH** schema
+
+1. Right-click on the **TICKITDWH** schema and select “Convert Schema”
+
+1. If prompted, select “Yes” to replace objects if they exist in the target and “Collect and Continue” if prompted about statistics.
+
+1. From the right-hand pane, expand the **TICKITDWH** schema and you should see your tables and views have been created in your Redshift Database.
+
+You have now successfully converted your Oracle Data Warehouse schema to Redshift—in the next lab, we are going to migrate the actual data from your Oracle data warehouse to Redshift.

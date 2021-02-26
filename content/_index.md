@@ -1,16 +1,14 @@
 +++ 
-title = "Workshop - Containers on AWS" 
+title = "Workshop - Data warehouse on AWS" 
 chapter = true 
 weight = 1 
 +++
 
-## <p style="text-align: center;">Welcome to AWS Solutions Training for Partners: Containers on AWS</p>
+## <p style="text-align: center;">AWS Professional Services: Big Data and Analytics</p>
 
-In this Workshop you will learn how to deploy containerizad applications with AWS ECS & EKS services
+{{< youtube 13iIj34nkQE >}}
 
-{{< youtube 9u_HKS_Lv6o >}}
-
-<p style="text-align: center;">AWS re:Invent 2020: Getting up and running with Amazon ECS</p>
+<p style="text-align: center;">AWS re:Invent 2020: Deep dive on best practices for Amazon Redshift</p>
 
 ## <p style="text-align: center;">Upcoming Training for Partners</p>
 

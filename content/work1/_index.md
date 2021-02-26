@@ -1,17 +1,16 @@
 +++
-title = "ECS"
+title = "Amazon Redshift Spectrum"
 date = 2021-02-17T17:04:42-06:00
 weight = 2
 chapter = false
 pre = "<b>1. </b>"
 +++
 
-## Building and deploying a containerized application with AWS ECS
+## Lab 1: Querying Data with Amazon Redshift Spectrum
 
-In this Lab you will learn how to use Amazon Elastic Container Service (ECS) using AWS Fargate as the deployment platform. AWS Fargate is a compute engine for Amazon ECS/EKS that runs containers without requiring you to deploy or manage the underlying Amazon EC2 instances. With Fargate, you specify an image to deploy and the amount of CPU and memory it requires. Fargate handles the updating and securing of the underlying Linux OS, Docker daemon, and ECS agent as well as all the infrastructure capacity management and scaling.
+### Overview
+The IT team at UnicornNation setup a Redshift Cluster and are planning on migrating their existing Oracle Data Warehouse, which is stores current data in their Tickit database. They also want to make the historical data available from S3 from the Tickit-History database, using Redshift Spectrum. 
 
-You will create an ECS cluster, a task definition, an Application Load Balancer and a service using AWS Fargate. You will do those activities using the AWS Management Console. At the end of this Lab, you will have a web page running on Amazon ECS with AWS Fargate. 
+For this lab, we have prepared a number of tables in the Glue Data Catalog based on this Tickit History data. We are going to register an external schema so you can use this data in Amazon Redshift, using Redshift Spectrum to access the external schema and tables.
 
-The following is the architecture that you will build in this Lab:
-
-<img src="images/Picture1.png" alt="drawing" width="500"/>
+First, we are going to connect to the AWS Glue Tickit-History database from S3 data. But first, we need to register the Tickit-History database/schema as an external schema in Redshift. To create this external schema, we will use the Redshift built-in query editor to execute the SQL queries.
