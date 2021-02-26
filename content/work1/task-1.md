@@ -1,81 +1,101 @@
 +++ 
-title = "Task 1: Querying Data with Amazon Redshift Spectrum" 
+title = "Task 1: Create a Service Catalog product and portfolio" 
 chapter = false 
 weight = 1 
 +++
 
-1. From the console, navigate to the **Amazon Redshift** service. Service *search box* > Redshift
+1. Login to your AWS console using the instructions provided by the instructor
 
-	<img src="../images/service-redshift.png" alt="drawing" width="600"/>
+1. Go to Services *search box* > Service Catalog
 
-1. We need to create a new database connection, click on the **EDITOR** icon, then click on **Query editor**
+	<img src="../images/lookup-service.png" alt="drawing" width="600"/>
 
-	<img src="../images/click-on-editor.png" alt="drawing" width="100"/>
+1. From the left pane, under **Administration**, click on **Products**
 
-1. In this lab, we will use the previous Redshift query editor version, so please click on **old query editor** from the blue banner at the top of the page.
+	<img src="../images/sc-products.png" alt="drawing" width="250"/>
 
-	<img src="../images/old-query-editor.png" alt="drawing" width="800"/>
+1. To create our *product*, we will use a simple CloudFormation template which include the following services:
+
+	<img src="../images/secgov-sc.png" alt="drawing" width="700"/>
+
+1. Click <img src="../images/upload-product.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="alt text" width="120"/>
+
+1. In **Product Name** type: `my-awesome-product`
+
+1. In **Owner** type your name or an alias
+
+1. In **Version details** select **Use a CloudFormation template**
+
+1. In **Use a CloudFormation template** text box, copy and paste the following URL:
+
+	```
+	https://ee-assets-prod-us-east-1.s3.us-east-1.amazonaws.com/modules/6dc73ef66a2d4cf79e247e72cfa4006d/v1/CF-service-catalog-deploy.json
+	```
 	
-1. In the **Connect to database** dialog box, update fields with this parameters:
-
-	| Key | Value  |
-	|---|---|
-	| Database name  | psobigdata  |
-	|  Database user | awsuser  |
-	|  Database password | PsoBigData01  |
-
-1. Click **Connect to database**
-
-	<img src="../images/redshift-connect-to-database.png" alt="drawing" width="500"/>
-
-1. You will run the below query, but before you run it you need to update the IAM role ARN with the actual AWS account number (ACCOUNT_NUMBER), you will find it in the console upper right corner, it's a 12 digits number. Remove hyphens '-'.
-
-	<img src="../images/aws-account-number.png" alt="drawing" width="500"/>
-
-	```
-	create external schema tickithistory
-	from data catalog
-	database 'teamawesome-tickit-history'
-	region 'us-west-2'
-	iam_role 'arn:aws:iam::ACCOUNT_NUMBER:role/RedshiftIAMRole1'
-	create external database if not exists;
-	```
-
-1. Paste the the updated script in the Amazon Redshift query editor text box and run the query.
-
-	<img src="../images/redshift-run-query.png" alt="drawing" width="700"/>
-
-
-1. To make sure the external schema has been created, run the following query in the same Query window:
-
-	```
-	select * from svv_external_schemas
-	```
-
-	You must see a similar output in the below **Rows returned** panel
-
-	<img src="../images/redshift-new-schema.png" alt="drawing" width="600"/>
-
-1. To make sure that your external tables are available for querying, run the following query:
-
-	```
-	select * from svv_external_tables
-	```
-
-	Below **Rows returned** you must see a list of tables
+	Note: This CloudFormation template describes the resources and configurations that will be created as part of the Service Catalog product deployment
 	
-1. Now that you have confirmed that your external tables are accessible, you can run queries from Redshift to Athena databases. 
+1. In **Version title**, type `v1`
 
-	*Sample query question*: Using the following query, we will find what were the Top 5 ticket sellers for events in San Diego in 2008?
+1. Click <img src="../images/click-review.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
 
-	```
-	select sellerid, username, city, firstname ||' '|| lastname as fullname, sum(qtysold) as qtysold
-	from tickithistory.sales, tickithistory.date, tickithistory.users
-	where sales.sellerid = users.userid
-	and sales.dateid = date.dateid
-	and year = 2008
-	and city = 'San Diego'
-	group by sellerid, username, city, firstname ||' '|| lastname
-	order by 5 desc
-	limit 5;
-	```
+1. Click <img src="../images/click-create-product.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="120"/>
+
+1. You must see this message
+
+	<img src="../images/success-product.png" alt="drawing" width="300"/>
+
+1. Now you need to create a *Portfolio* to share with your end users and add your newly created *Product*
+
+1. From the left pane, click on **Portfolios**
+
+1. Click on <img src="../images/create-portfolio.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="110"/>
+
+1. In **Portfolio Name**, type `my-awesome-portfolio`
+
+1. In **Owner**, type your name or alias
+
+1. Click on <img src="../images/click-create.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="60"/>
+
+1. Click on the newly created Portfolio
+
+1. Now you will add the *Product* to the *Portfolio*, click on the **Products** tab
+
+1. Click on <img src="../images/add-product.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="120"/>
+
+1. Select your *Product*
+
+	<img src="../images/select-product.png" alt="drawing" width="400"/>
+
+1. Click on <img src="../images/add-product-2.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="170"/>
+
+1. Your *Product* has been added to your *Portfolio*, now you need to add users to consume your *Product*
+
+1. Click on the **Groups, roles, and users** tab
+
+1. Click on <img src="../images/add-group.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="155"/>
+
+1. Select the **DeveloperGroup**, which as been pre-created in the lab environment
+
+	<img src="../images/select-group.png" alt="drawing" width="380"/>
+
+1. Click on <img src="../images/add-access.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="85"/>
+
+1. In the next steps you will provide the IAM permissions to the *Portfolio* so it could have all the required permissions to deploy all the services described in your *Product*, you will do this by creating a **Constraint** and assign it an **IAM Role**. Click on the **Constraints** tab.
+
+1. Click on <img src="../images/create-constraint.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="110"/>
+
+1. You will see the **Create constraint** configuration
+
+1. In **Product**, select your *Product*
+
+1. In **Constraint type**, select **Launch**
+
+1. Scroll down to the **Launch constraint** section
+
+1. In **Method**, select **Select IAM role**
+
+1. In **IAM role**, select **Sc-launchConstraint-role** from the displayed options
+
+1. Click on <img src="../images/click-create.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="60"/>
+
+	Note: This IAM role has been pre-created in this lab environment, feel free to navigate to Services > IAM >Roles > Sc-launchConstraint-role to see the **Permissions policies** attached

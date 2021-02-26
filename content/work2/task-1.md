@@ -1,98 +1,89 @@
 +++ 
-title = "Task 1: Convert your Oracle schema to Redshift" 
+title = "Task 1: Enable AWS Config" 
 chapter = false 
 weight = 1 
 +++
 
-1. To do this lab, you will need the Private IP of an Oracle DW deployed in this lab environment, that you will use as the source database to perform a migration to Amazon Redshift, and the public IP of a Windows host which has preinstalled the Schema Convertion Tool (SCT). To obtain these IPs, navigate to the CloudFormation Service (Service *search box* -> CloudFormation)
+1. Sign in to your Lab's AWS Console following the instructions provided
 
-1. Click on the CloudFormation stack listed
+1. Make sure your selected region is **Oregon**
 
-	<img src="../images/cf-1.png" alt="drawing" width="600"/>
+1. Go to Services *search box* > Config
 
-1. Click on the **Outputs** panel
+	<img src="../images/service-config-2.png" alt="drawing" width="650"/>
 
-	<img src="../images/cf-2.png" alt="drawing" width="600"/>
+1. Click <img src="../images/get-started-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
 
-1. Copy and paste the *Oracle DW private IP*, *Windows host public IP* and the *Amazon Redshift endpoint* in a notepad on your computer, you will use them later in this lab and in Lab #3.
+1. In the **Settings** page, leave defaults and click on <img src="../images/next-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="55"/>
 
-1. The *Schema Conversion Tool (SCT)* is preinstalled in the Windows host. Use the below credentials to log in to the instance using any RDP client installed in your computer
+1. In the **Rules** page, leave defaults and click on <img src="../images/next-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="55"/>
 
-	| Key | Value  |
-	|---|---|
-	| Host IP  | [Windows host public IP]  |
-	|  User | Administrator  |
-	|  Password | PsoBda2020$Win  |
+1. In the **Review** page, click on <img src="../images/confirm-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="65"/>
 
-1. Once logged in, click **Yes**, to allow the windows intance to be network discovered
+1. AWS Config will start, you can close the "Welcome to AWS Config" window.
 
-	<img src="../images/win-network.png" alt="drawing" width="300"/>
+1. Now we will create our first Config rule, it will check whether any security groups with inbound 0.0.0.0/0 have TCP or UDP ports accessible. The rule is NON_COMPLIANT when a security group with inbound 0.0.0.0/0 has a port accessible which is not specified in the rule parameters. In your left panel, click on **Rules**
 
-1. Open the AWS Schema Conversion Tool (SCT), it will take ~1 minute to launch
+	<img src="../images/config-rules.png" alt="drawing" width="200"/>
 
-	<img src="../images/open-sct.png" alt="drawing" width="500"/>
+1. Click on <img src="../images/add-rule-2.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
 
-1. If you see a prompt window asking for a SCT update, select **Not now**
+1. In the **AWS Managed Rules** search box, type: `vpc-sg-open-only-to-authorized-ports`
 
-1. Once the *Schema Conversion Tool (SCT)* has launched, in the Menu panel, click on File > New project
+1. Select the managed rule and click <img src="../images/next-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="55"/>
 
-	<img src="../images/open-new-proyect.png" alt="drawing" width="200"/>
+1. In the **Details** page, in the **Trigger** section, select **Tags** under **Scope of changes**.
 
-1. Update the New project information with the below values
+1. In Resources by tag, type `Compliance` in the *Tag Key* box, and `Prod` in the *Tag value* box
 
-	| Key | Value  |
-	|---|---|
-	| Project Name  | Convert Oracle DwH to Redshift  |
-	|  DB category | Data warehouse (OLAP)  |
-	|  Source engine | Oracle DW |
-	|  Target engine | Amazon Redshift  |
+	<img src="../images/resource-by-tag.png" alt="drawing" width="500"/>
 
-1. Click **OK**
+1. Under **Parameters**, you will authorize only port `80` to be open to the internet
 
-1. Once in your new project panel, you need to disable **AWS Glue** as the target for stored procedures conversion, click on Settings > Project Settings > Conversion settings > Use AWS Glue (UNCHECK)
+	<img src="../images/allow-port-80-1.png" alt="drawing" width="600"/>
 
-	<img src="../images/uncheck-glue.png" alt="drawing" width="700"/>
+1. Click on <img src="../images/next-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="55"/>
 
-1. Click **OK**
+1. In the **Review and create** page click <img src="../images/add-rule-2.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
+	
+1. Click on the Rule you just created, under **Resources in scope**, select All. after a couple of minutes you will see the a security group in **Compliant** status
+	
+	<img src="../images/compliant.png" alt="drawing" width="250"/>
+	
+	NOTE: you may need to refresh the displayed information on the rule console, click on the refresh botton <img src="../images/refresh-botton.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="30"/>
+	
+1. Now we will make a change on the security group inbound rule, and open port 22 to the internet, so this resource change its status to **Noncompliant**
 
-1. Click on **Connect to Oracle DW**
+1. Go to Services *search box* > VPC
 
-1. You will need the Oracle DW private IPv4 recorded in this lab's step 6. Update the connection information with the below values:
+1. On the left pane, under the **Security** section, click on **Security Groups**
 
-	| Key | Value  |
-	|---|---|
-	| Server name  | [Oracle DW private IP]  |
-	|  Server port | 1521  |
-	|  Oracle SID | xe |
-	|  User name | TICKITDWH  |
-	|  Password | tickit#2020$dw  |
+1. In the Security Group search box, type `sc-web-secgroup-`, and click on the lookup result
 
-1. Click **OK**
+	<img src="../images/sg-lookup-1.png" alt="drawing" width="370"/>
+	
+	**Note**: You will notice this **Security Group** was created as part of your **Service Catalog** application deployment
 
-1. An SSL security warning will show in the screen, since this a lab environment we can proceed without configuring a secure SSL connection.
+1. In the below panel, click on **Inbound rules**
 
-	<img src="../images/oracle-ssl-warning.png" alt="drawing" width="500"/>
+	<img src="../images/click-inbound.png" alt="drawing" width="370"/>
 
-1. Click on **Connect to Amazon Redshift**. Update the connection information with the below values:
+1. Click on <img src="../images/edit-inbound.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="100"/>
 
-	| Key | Value  |
-	|---|---|
-	| Server name  | [Amazon Redshift endpoint]  |
-	|  Server port | 5439 |
-	|  Database | psobigdata |
-	|  User name | awsuser |
-	|  Password | PsoBigData01 |
+1. Click on <img src="../images/add-rule-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="65"/>
 
-1. Click **OK**
+1. You will edit the second rule line just added, in the inbound **Type**, select **SSH** and in **Source** select **Anywhere**
 
-1. From the **Oracle DW** pane on the left-hand side, DE-SELECT all of the items in the list
+	<img src="../images/add-ssh.png" alt="drawing" width="700"/>
 
-1. In the same pane, click to select the **TICKITDWH** schema
+1. Click <img src="../images/save-rules.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
 
-1. Right-click on the **TICKITDWH** schema and select “Convert Schema”
+1. Now return to Config console. Services *search box* > Config
 
-1. If prompted, select “Yes” to replace objects if they exist in the target and “Collect and Continue” if prompted about statistics.
+1. On the left pane, click on **Rules**
 
-1. From the right-hand pane, expand the **TICKITDWH** schema and you should see your tables and views have been created in your Redshift Database.
+1. Click on the rule you previously created, after a minute the rule **Resource compliance status** will change from **Compliant** to **Noncompliant**
 
-You have now successfully converted your Oracle Data Warehouse schema to Redshift—in the next lab, we are going to migrate the actual data from your Oracle data warehouse to Redshift.
+	NOTE: you may need to refresh the displayed information on the rule console, click on the refresh botton <img src="../images/refresh-botton.png" alt="drawing" width="30"/>
+
+	<img src="../images/noncompliant-sg.png" alt="drawing" width="900"/>
