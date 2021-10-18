@@ -128,13 +128,13 @@ In this task you will create a new Config rule that will check whether your EC2 
 
 	<img src="../images/copy-instance-id.png" alt="drawing" width="700"/>
 
-1. This change will trigger the Config rule remediation action, it will take a couple of minutes for the rule to start changing the instance status automatically, from shutting down, to resize back to `t3.small` and finally start the instance again, so it can enter in a **compliant** state according to the rule we created. 
-
-1. Return to Config console. Go to Services *search box* > Config
+1. This change will trigger the Config rule remediation action, it will take a couple of minutes for the rule to start changing the instance status automatically, from shutting down, to resize back to `t3.small` and finally start the instance again, so it can enter in a **compliant** state according to the rule we created. You could wait a couple of minutes in the EC2 console and refresh the page to see this automatic remediation actions.
 
 1. Now we will use another Config feature, the capacity to keep track of changes in AWS resource.
 
 	> AWS Config records details of changes to your AWS resources to provide you with a configuration history. You can use the AWS Management Console, API, or CLI to obtain details of what a resource’s configuration looked like at any point in the past. AWS Config will also automatically deliver a configuration history file to the Amazon S3 bucket you specify.
+
+1. Return to Config console. Go to Services *search box* > **Config**
 
 1. From the left pane, click on **Resources**
 
@@ -143,9 +143,9 @@ In this task you will create a new Config rule that will check whether your EC2 
 1. In the Resources section paste the EC2 instance ID into the search box, it will display the instance ID below the Resource identifier section. Click on the instance ID.
 
 	<img src="../images/resourceid-config.png" alt="drawing" width="520"/>
-	
+
 1. Click <img src="../images/resource-timeline.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="100"/>
 
-1. On the far right of the screen you will find an **Event type** filter. Display the options and select *Configuration events*, feel free to explore the events displayed, expand each one of them and explore the EC2 instance change details. After that, select *Compliance events*, explore the displayed events as well.
-	
+1. You will see a list of events, feel free to explore the events displayed, you could expand each one of them but we recommend you to look into the **Rule compliance** and **Configuration change** *events*. You will find interesting information regarding the instance configuration changes, and compliance status updates.
+
 #### LAB END
