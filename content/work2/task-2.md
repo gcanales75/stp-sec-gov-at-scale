@@ -38,25 +38,21 @@ In this task you will create a new Config rule that will check whether your EC2 
 
 1. Click on <img src="../images/create-role.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
 
-1. Under **Choose a use case**, click on **Systems Manager**
+1. Under **Use case**, and **Use cases for other AWS services:**, select **Systems Manager** (Do not select *Systems Manager - Inventory and Maintenance Windows*)
 
-1. Under **Select your use case**, select **Systems Manager**
+1. Click on **Next**
 
-1. Click on <img src="../images/next-permissions.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="100"/>
-
-1. In the Filter policies search box type `AmazonEC2FullAccess`, and click the checkbox next to the policy
+1. In the **Permissions policies** search box type `AmazonEC2FullAccess`, hit <ENTER> and click the checkbox next to the policy
 
 	<img src="../images/ec2-full.png" alt="drawing" width="1000"/>
 
-1. Click <img src="../images/next-tags.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
-
-1. Click <img src="../images/next-review.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="80"/>
+1. Click **Next**
 
 1. In **Role name*** type: `config-resize-instance-role`
 
 1. Click <img src="../images/create-role.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="75"/>
 
-1. You will see **The role config-resize-instance-role has been created.** at the top of the screen. Click on the *role name*
+1. You will see **Role config-resize-instance-role has been created.** at the top of the screen. Click on **View role** button, right to that message.
 
 1. Copy the **Role ARN** (i.e. arn:aws:iam::xxxxxxxxxxx:role/config-resize-instance-role) and paste it in a note pad, you will use it in a later step.
 
@@ -72,19 +68,21 @@ In this task you will create a new Config rule that will check whether your EC2 
 
 1. In **Select remediation method** section, select **Automatic remediation**
 
+1. Under **Retries in** type `5` and under **Seconds** typoe `60`.
+
 1. In **Remediation action details**, section, expand the drop-down menu and select **AWS-ResizeInstance**
 
 	<img src="../images/choose-remediation-action-2.png" alt="drawing" width="800"/>
-	
+
+1. In the **Rate Limits** section, under **Concurrent Execution Rate** type `2`, and under **Error Rate** type `5`.
+
 1. In **Resource ID parameter** select **InstanceId**
 
 	<img src="../images/resourceid-param.png" alt="drawing" width="650"/>
 	
-1. In the **Parameters** section, fill the  *InstanceType* and  *AutomationAssumeRole* ** parameters 
+1. In the **Parameters** section, fill the  *InstanceType* and  *AutomationAssumeRole* ** parameters. In *InstanceType*, type `t3.small` and paste the role ARN you copied in step 22 in *AutomationAssumeRole*.
 
 	<img src="../images/remediation-params.png" alt="drawing" width="800"/>
-	
-	** Paste the role ARN you copied in step 22
 
 1. Click <img src="../images/save-changes.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="80"/>
 

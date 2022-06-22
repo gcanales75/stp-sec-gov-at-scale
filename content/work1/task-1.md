@@ -10,7 +10,7 @@ weight = 1
 
 	<img src="../images/lookup-service.png" alt="drawing" width="600"/>
 
-1. From the left pane, under **Administration**, click on **Products**
+1. From the left pane, under **Administration**, click on **Product list**
 
 	<img src="../images/sc-products.png" alt="drawing" width="250"/>
 
@@ -35,8 +35,6 @@ weight = 1
 	Note: This CloudFormation template describes the resources and configurations that will be created as part of the Service Catalog product deployment
 	
 1. In **Version title**, type `v1`
-
-1. Click <img src="../images/click-review.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
 
 1. Click <img src="../images/click-create-product.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="120"/>
 

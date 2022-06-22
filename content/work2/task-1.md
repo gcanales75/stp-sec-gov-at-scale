@@ -32,9 +32,9 @@ weight = 1
 
 1. Select the managed rule and click <img src="../images/next-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="55"/>
 
-1. In the **Details** page, in the **Trigger** section, select **Tags** under **Scope of changes**.
+1. In the **Configure rule** page, in the **Trigger** section, select **Tags**.
 
-1. In Resources by tag, type `Compliance` in the *Tag Key* box, and `Prod` in the *Tag value* box
+1. Under **Resources by tag**, type `Compliance` in the *Tag Key* box, and `Prod` in the *Tag value* box
 
 	<img src="../images/resource-by-tag.png" alt="drawing" width="500"/>
 
@@ -46,7 +46,7 @@ weight = 1
 
 1. In the **Review and create** page click <img src="../images/add-rule-2.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="70"/>
 	
-1. Click on the Rule you just created, under **Resources in scope**, select All. after a couple of minutes you will see the a security group in **Compliant** status
+1. Click on the Rule you just created, under **Resources in scope**, select All. after a couple of minutes you will see a security group in **Compliant** status
 	
 	<img src="../images/compliant.png" alt="drawing" width="250"/>
 	
@@ -72,7 +72,7 @@ weight = 1
 
 1. Click on <img src="../images/add-rule-1.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="65"/>
 
-1. You will edit the second rule line just added, in the inbound **Type**, select **SSH** and in **Source** select **Anywhere**
+1. You will edit the second rule line just added, in the inbound **Type**, select **SSH** and in **Source** select **Anywhere IPv4**
 
 	<img src="../images/add-ssh.png" alt="drawing" width="700"/>
 
@@ -82,7 +82,7 @@ weight = 1
 
 1. On the left pane, click on **Rules**
 
-1. Click on the rule you previously created, after a minute the rule **Resource compliance status** will change from **Compliant** to **Noncompliant**
+1. Click on the rule you previously created, under **Resources in scope**, select **All**, after a minute the rule **Resource compliance status** will change from **Compliant** to **Noncompliant**
 
 	NOTE: you may need to refresh the displayed information on the rule console, click on the refresh botton <img src="../images/refresh-botton.png" alt="drawing" width="30"/>
 

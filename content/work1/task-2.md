@@ -50,14 +50,12 @@ weight = 2
 
 1. Now the deployment of your application resources has started, it will take ~5 minutes to deploy, please wait.
 
-1. The resources deployment will be completed once the **Event** status has changed from **IN_PROGRESS** to **SUCCEEDED**. You may need to click on the refresh botton <img src="../images/refresh-botton.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="30"/> to update the console information
+1. The resources deployment will be completed once the **Event** status has changed from **Under change** to **Available**. You may need to click on the refresh botton <img src="../images/refresh-botton.png" style="border: 0; display:inline; margin: 0 2px; box-shadow: none" alt="drawing" width="30"/> to update the console information
 
-1. To identify the resources ID deployed as part of the **Service Catalog** *product*, expand the Event details
-
-	<img src="../images/expand_event.png" alt="drawing" width="750"/>
-
-1. In the **Outputs** section you will notice the different resources deployed, feel free to navigate to the different AWS Services and review their configuration
+1. In the **Resources** tab you will see the resources created details, feel free to navigate to the different AWS Services and review their configuration
 
 1. Make sure to **sign out** from the *developer1* account, as we will no longer use this IAM user on *Lab 2*
 
 	<img src="../images/dev-signout.png" alt="drawing" width="250"/>
+
+**LAB END**
